@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Languages/english.yml">
-    <EmbeddedResource Include="Languages/polish.yml">
+    <EmbeddedResource Include="Languages/english.yml" />
+    <EmbeddedResource Include="Languages/polish.yml" />
   </ItemGroup>
 
 </Project>
