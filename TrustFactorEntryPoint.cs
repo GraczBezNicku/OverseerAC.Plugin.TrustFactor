@@ -1,6 +1,17 @@
-﻿using LabApi.Features;
+﻿using System.Text;
+
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
+
 using OverseerAC.Plugin.TrustFactor.Features;
+
+using UnityEngine.Networking;
+using UnityEngine;
+
+using MEC;
+using OverseerAC.Plugin.TrustFactor.Models;
+using Utf8Json;
 
 namespace OverseerAC.Plugin.TrustFactor;
 
@@ -18,6 +29,8 @@ public class TrustFactorEntryPoint : Plugin<Config>
 
     public override void Disable()
     {
+        LabApi.Events.Handlers.PlayerEvents.Joined -= PlayerTrustCheck;
+
         Instance = null;
     }
 
@@ -27,5 +40,44 @@ public class TrustFactorEntryPoint : Plugin<Config>
 
         Localization.CreateDefaultLangFiles();
         Localization.LoadLanguage(Config.Language);
+
+        LabApi.Events.Handlers.PlayerEvents.Joined += PlayerTrustCheck;
+    }
+
+    public void PlayerTrustCheck(PlayerJoinedEventArgs ev)
+    {
+        if (ev.Player.ReferenceHub.authManager.BypassBansFlagSet)
+            return;
+
+        StringBuilder fullUrl = new StringBuilder();
+
+        fullUrl.Append(Config.BaseApiUrl);
+        fullUrl.Append("trust/");
+        fullUrl.Append(ev.Player.UserId);
+        fullUrl.Append($"?key={Config.ApiKey}");
+
+        Timing.RunCoroutine(GetRequest(fullUrl.ToString()));
+
+        IEnumerator<float> GetRequest(string url)
+        {
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+            {
+                webRequest.timeout = 10;
+
+                yield return Timing.WaitUntilDone(webRequest.SendWebRequest());
+
+                if (webRequest.result == UnityWebRequest.Result.Success)
+                {
+                    TrustCheckModel response = JsonSerializer.Deserialize<TrustCheckModel>(webRequest.downloadHandler.text);
+
+                    if (!response.trusted)
+                        ev.Player.Kick(Localization.GetLocalizedEntry(Localization.LangEntry.UntrustedKickMessage));
+                }
+                else
+                {
+                    Logger.Error($"{Localization.GetLocalizedEntry(Localization.LangEntry.RequestFailed)}\n{webRequest.error}");
+                }
+            }
+        }
     }
 }

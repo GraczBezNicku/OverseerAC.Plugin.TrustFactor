@@ -102,5 +102,7 @@ public static class Localization
     public enum LangEntry
     {
         LanguageLoaded,
+        UntrustedKickMessage,
+        RequestFailed
     }
 }

@@ -17,6 +17,7 @@
       <Reference Include="Pooling" />
       <Reference Include="UnityEngine.CoreModule" />
       <Reference Include="UnityEngine.PhysicsModule" />
+      <Reference Include="UnityEngine.UnityWebRequestModule" />
     </ItemGroup>
 
   <ItemGroup>

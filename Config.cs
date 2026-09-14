@@ -11,7 +11,7 @@ public class Config
     public string Language { get; set; } = "english";
 
     [Description("Base API url for OverseerAC. *Do not edit unless you know what you're doing!*")]
-    public string BaseApiUrl { get; set; } = "https://overseer.eu/api";
+    public string BaseApiUrl { get; set; } = "https://overseerac.eu/api/";
 
     [Description("Your OverseerAC API key, *DO NOT SHARE IT!*. If you don't have one, you can request it at our Discord, which can be found here: https://github.com/GraczBezNicku/OverseerAC.Plugin.TrustFactor")]
     public string ApiKey { get; set; } = "";

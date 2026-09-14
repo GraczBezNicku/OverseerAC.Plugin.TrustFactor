@@ -1,1 +1,15 @@
 LanguageLoaded: 'Język polski został poprawnie załadowany!'
+UntrustedKickMessage: |
+
+  OverseerAC oznaczył twoje konto jako niezaufane.
+  OverseerAC to projekt społeczności NIEZWIĄZANY z Northwood. 
+
+  Tak się z reguły dzieje, jeżeli twoje konto jest Prywatne.
+  
+  Spróbuj zmienić ustawienia prywatności Steam na Publiczne i spróbuj dołączyć za 10 minut.
+  Możesz później ustawić profil Prywatny, ale możesz mieć problemy z dołączeniem po 24 godzinach.
+  Jeżeli sie tak stanie, ustaw profil na Publiczny, a następnie dołącz i ustaw z powrotem na Prywatny.
+
+  Jeżeli dalej nie możesz dołączyć, możesz złożyć wniosek o dodanie na białą listę na naszym Discordzie: overseerac.eu/discord
+  Wnioski wysyłane z nowych kont będą odrzucane, chyba że posiadasz bardziej zaufane główne konto Steam.
+RequestFailed: 'Wysyłanie żądania się nie powiodło!'
