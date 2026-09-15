@@ -12,6 +12,7 @@ using UnityEngine;
 using MEC;
 using OverseerAC.Plugin.TrustFactor.Models;
 using Utf8Json;
+using LabApi.Features.Wrappers;
 
 namespace OverseerAC.Plugin.TrustFactor;
 
@@ -42,11 +43,14 @@ public class TrustFactorEntryPoint : Plugin<Config>
         Localization.LoadLanguage(Config.Language);
 
         LabApi.Events.Handlers.PlayerEvents.Joined += PlayerTrustCheck;
+
+        if (Config.TestMode)
+            Logger.Warn(Localization.GetLocalizedEntry(Localization.LangEntry.TestModeEnabledMessage));
     }
 
     public void PlayerTrustCheck(PlayerJoinedEventArgs ev)
     {
-        if (ev.Player.ReferenceHub.authManager.BypassBansFlagSet)
+        if (ev.Player.ReferenceHub.authManager.BypassBansFlagSet || ev.Player.RemoteAdminAccess)
             return;
 
         StringBuilder fullUrl = new StringBuilder();
@@ -71,7 +75,26 @@ public class TrustFactorEntryPoint : Plugin<Config>
                     TrustCheckModel response = JsonSerializer.Deserialize<TrustCheckModel>(webRequest.downloadHandler.text);
 
                     if (!response.trusted)
-                        ev.Player.Kick(Localization.GetLocalizedEntry(Localization.LangEntry.UntrustedKickMessage));
+                    {
+                        if (!Config.TestMode)
+                            ev.Player.Kick(Localization.GetLocalizedEntry(Localization.LangEntry.UntrustedKickMessage));
+                        else
+                        {
+                            string msg = Localization.GetLocalizedEntry(Localization.LangEntry.TestModeUntrustedWarning)
+                                .Replace("%AUTHID%", ev.Player.UserId)
+                                .Replace("%NICK%", ev.Player.Nickname);
+
+                            Logger.Warn(msg);
+
+                            foreach (Player p in Player.ReadyList)
+                            {
+                                if (!p.ReferenceHub.serverRoles.AdminChatPerms)
+                                    continue;
+
+                                p.SendBroadcast($"<color=#800000FF>[OverseerAC]</color> {msg}", 3);
+                            }
+                        }
+                    }
                 }
                 else
                 {

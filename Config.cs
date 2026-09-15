@@ -4,7 +4,7 @@ namespace OverseerAC.Plugin.TrustFactor;
 
 public class Config
 {
-    [Description("When enabled, players marked as untrusted will not be kicked. A warning in the console will be displayed instead.")]
+    [Description("When enabled, players marked as untrusted will not be kicked. A warning will be displayed instead.")]
     public bool TestMode { get; set; } = false;
 
     [Description("Language to be used. Searches in the config folder of the plugin.")]

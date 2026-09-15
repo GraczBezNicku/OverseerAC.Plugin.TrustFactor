@@ -13,3 +13,10 @@ UntrustedKickMessage: |
   Jeżeli dalej nie możesz dołączyć, możesz złożyć wniosek o dodanie na białą listę na naszym Discordzie: overseerac.eu/discord
   Wnioski wysyłane z nowych kont będą odrzucane, chyba że posiadasz bardziej zaufane główne konto Steam.
 RequestFailed: 'Wysyłanie żądania się nie powiodło!'
+TestModeEnabledMessage: |
+
+  !!! OverseerAC WŁĄCZONY TRYB TESTOWY !!!
+  Tryb Testowy jest włączony. Niezaufane konta nie będą wyrzucane. 
+  Wiadomość zostanie wysłana w konsoli. Wszyscy gracze z permisjami do staff chatu również otrzymają wiadomość.
+  !!! ================================ !!!
+TestModeUntrustedWarning: 'Gracz %AUTHID% (%NICK%) został oznaczony jako niezaufany.'

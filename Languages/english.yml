@@ -13,3 +13,10 @@ UntrustedKickMessage: |
   If you still cannot join, you can request a whitelist on our Discord server: overseerac.eu/discord
   Whitelist requests from new accounts will be rejected unless you have a more trustworthy main account.
 RequestFailed: 'Web request failed!'
+TestModeEnabledMessage: |
+
+  !!! OverseerAC TEST MODE ENABLED !!!
+  Test mode is enabled. Untrusted accounts will not be kicked. 
+  A message will be displayed in the console. All players with staff chat permissions will receive a message as well.
+  !!! ============================ !!!
+TestModeUntrustedWarning: 'Player %AUTHID% (%NICK%) has been marked as untrusted.'

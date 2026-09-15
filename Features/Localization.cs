@@ -103,6 +103,8 @@ public static class Localization
     {
         LanguageLoaded,
         UntrustedKickMessage,
-        RequestFailed
+        RequestFailed,
+        TestModeEnabledMessage,
+        TestModeUntrustedWarning
     }
 }
