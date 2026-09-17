@@ -2,7 +2,7 @@
   <img src="https://github.com/GraczBezNicku/OverseerAC/blob/main/OverseerAC2.png?raw=true" width="256" height="256"/>
 </p>
 
-<h1 align="center">OverseerAC</h1>
+<h1 align="center">OverseerAC.Plugin.TrustFactor</h1>
 <div align="center">
   <a href="http://api.overseerac.eu/privacy.pdf">Privacy Policy</a>
   <span> - </span>
