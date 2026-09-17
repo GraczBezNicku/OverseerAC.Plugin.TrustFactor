@@ -27,7 +27,7 @@ public static class Localization
         if (TrustFactorEntryPoint.Instance == null)
             throw new InvalidOperationException("Plugin must be initialized for this operation!");
 
-        DirectoryInfo cfgDir = TrustFactorEntryPoint.Instance.GetConfigDirectory();
+        DirectoryInfo cfgDir = TrustFactorEntryPoint.Instance.GetConfigDirectory(!TrustFactorEntryPoint.Instance.Config.LocalConfig);
 
         foreach (KeyValuePair<string, string> langToFile in _DefaultLanguages)
         {
@@ -43,7 +43,7 @@ public static class Localization
         if (TrustFactorEntryPoint.Instance == null)
             throw new InvalidOperationException("Plugin must be initialized for this operation!");
 
-        DirectoryInfo cfgDir = TrustFactorEntryPoint.Instance.GetConfigDirectory();
+        DirectoryInfo cfgDir = TrustFactorEntryPoint.Instance.GetConfigDirectory(!TrustFactorEntryPoint.Instance.Config.LocalConfig);
 
         if (!File.Exists(Path.Combine(cfgDir.FullName, $"{langName}.yml")))
         {

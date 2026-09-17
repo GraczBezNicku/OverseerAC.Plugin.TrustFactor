@@ -13,6 +13,10 @@ using MEC;
 using OverseerAC.Plugin.TrustFactor.Models;
 using Utf8Json;
 using LabApi.Features.Wrappers;
+using LabApi.Loader;
+using GameCore;
+
+using Version = System.Version;
 
 namespace OverseerAC.Plugin.TrustFactor;
 
@@ -27,6 +31,31 @@ public class TrustFactorEntryPoint : Plugin<Config>
     public override string Author => "GBN";
 
     public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
+
+    public override Version Version => new Version(1, 0, 1);
+
+    public override void LoadConfigs()
+    {
+        if (!this.TryLoadConfig(ConfigFileName, out Config? config, true))
+        {
+            Logger.Warn("Failed to load the configuration file, using default values.");
+            config = new Config();
+        }
+
+        Config = config;
+
+        if (!Config.LocalConfig)
+            return;
+
+        if (this.TryReadConfig(ConfigFileName, out Config? localConfig))
+        {
+            Config = localConfig;
+        }
+        else
+        {
+            this.TrySaveConfig(Config, ConfigFileName, false);
+        }
+    }
 
     public override void Disable()
     {

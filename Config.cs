@@ -15,4 +15,7 @@ public class Config
 
     [Description("Your OverseerAC API key, *DO NOT SHARE IT!*. If you don't have one, you can request it at our Discord, which can be found here: https://api.overseerac.eu/discord")]
     public string ApiKey { get; set; } = "";
+
+    [Description("Determines whether the configuration files are created in \"$port\" or \"global\"")]
+    public bool LocalConfig { get; set; } = false;
 }
