@@ -4,7 +4,7 @@
 
 <h1 align="center">OverseerAC</h1>
 <div align="center">
-	<a href="http://api.overseerac.eu/privacy.pdf">Privacy Policy</a>
+  <a href="http://api.overseerac.eu/privacy.pdf">Privacy Policy</a>
   <span> - </span>
   <a href="http://api.overseerac.eu/terms.pdf">Terms of Service</a>
   <span> - </span>
