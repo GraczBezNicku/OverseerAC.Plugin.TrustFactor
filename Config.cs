@@ -13,6 +13,6 @@ public class Config
     [Description("Base API url for OverseerAC. *Do not edit unless you know what you're doing!*")]
     public string BaseApiUrl { get; set; } = "https://api.overseerac.eu/v1/";
 
-    [Description("Your OverseerAC API key, *DO NOT SHARE IT!*. If you don't have one, you can request it at our Discord, which can be found here: https://discord.overseerac.eu/")]
+    [Description("Your OverseerAC API key, *DO NOT SHARE IT!*. If you don't have one, you can request it at our Discord, which can be found here: https://api.overseerac.eu/discord")]
     public string ApiKey { get; set; } = "";
 }
