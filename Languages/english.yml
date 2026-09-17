@@ -10,7 +10,7 @@ UntrustedKickMessage: |
   You can Private the profile afterwards, but you may be unable to join after 24 hours.
   If that happens, set the profile to Public, then try to join and Private it again.
 
-  If you still cannot join, you can request a whitelist on our Discord server: overseerac.eu/discord
+  If you still cannot join, you can request a whitelist on our Discord server: https://discord.overseerac.eu/
   Whitelist requests from new accounts will be rejected unless you have a more trustworthy main account.
 RequestFailed: 'Web request failed!'
 TestModeEnabledMessage: |
