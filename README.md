@@ -8,11 +8,11 @@
   <span> - </span>
   <a href="http://api.overseerac.eu/terms.pdf">Terms of Service</a>
   <span> - </span>
-  <a href="http://discord.overseerac.eu">Discord</a>
+  <a href="http://api.overseerac.eu/discord">Discord</a>
   <p></p>
 </div> 
 <div align="center">
-  <a href="http://git.overseerac.eu">Main Repository</a>
+  <a href="http://api.overseerac.eu/git">Main Repository</a>
 </div>
 
 ## Installation
