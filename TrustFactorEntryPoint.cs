@@ -106,7 +106,7 @@ public class TrustFactorEntryPoint : Plugin<Config>
                     if (!response.trusted)
                     {
                         if (!Config.TestMode)
-                            ev.Player.Kick(Localization.GetLocalizedEntry(Localization.LangEntry.UntrustedKickMessage));
+                            ev.Player.Disconnect(Localization.GetLocalizedEntry(Localization.LangEntry.UntrustedKickMessage));
                         else
                         {
                             string msg = Localization.GetLocalizedEntry(Localization.LangEntry.TestModeUntrustedWarning)
