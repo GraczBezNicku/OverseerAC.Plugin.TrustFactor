@@ -32,7 +32,7 @@ public class TrustFactorEntryPoint : Plugin<Config>
 
     public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 
-    public override Version Version => new Version(1, 0, 1);
+    public override Version Version => new Version(1, 0, 2);
 
     public override void LoadConfigs()
     {
