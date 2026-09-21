@@ -31,8 +31,7 @@ public static class Localization
 
         foreach (KeyValuePair<string, string> langToFile in _DefaultLanguages)
         {
-            if (!File.Exists(Path.Combine(cfgDir.FullName, $"{langToFile.Key}.yml")))
-                File.WriteAllText(Path.Combine(cfgDir.FullName, $"{langToFile.Key}.yml"), langToFile.Value);
+            File.WriteAllText(Path.Combine(cfgDir.FullName, $"{langToFile.Key}.yml"), langToFile.Value);
         }
     }
 
