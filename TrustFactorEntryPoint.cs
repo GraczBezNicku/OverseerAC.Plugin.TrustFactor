@@ -32,7 +32,7 @@ public class TrustFactorEntryPoint : Plugin<Config>
 
     public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 
-    public override Version Version => new Version(1, 0, 2);
+    public override Version Version => new Version(1, 1, 0);
 
     public override void LoadConfigs()
     {
@@ -81,13 +81,14 @@ public class TrustFactorEntryPoint : Plugin<Config>
     {
         if (ev.Player.ReferenceHub.authManager.BypassBansFlagSet || ev.Player.RemoteAdminAccess)
             return;
-
+            
         StringBuilder fullUrl = new StringBuilder();
 
         fullUrl.Append(Config.BaseApiUrl);
         fullUrl.Append("trust/");
         fullUrl.Append(ev.Player.UserId);
         fullUrl.Append($"?key={Config.ApiKey}");
+        fullUrl.Append($"&playerAddress={ev.Player.IpAddress}");
 
         Timing.RunCoroutine(GetRequest(fullUrl.ToString()));
 
