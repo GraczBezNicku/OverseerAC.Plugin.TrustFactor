@@ -60,6 +60,7 @@ public class TrustFactorEntryPoint : Plugin<Config>
     public override void Disable()
     {
         LabApi.Events.Handlers.PlayerEvents.Joined -= PlayerTrustCheck;
+        LabApi.Events.Handlers.ServerEvents.WaitingForPlayers -= OutdatedVersionCheck;
 
         Instance = null;
     }
@@ -71,17 +72,54 @@ public class TrustFactorEntryPoint : Plugin<Config>
         Localization.CreateDefaultLangFiles();
         Localization.LoadLanguage(Config.Language);
 
+        LabApi.Events.Handlers.ServerEvents.WaitingForPlayers += OutdatedVersionCheck;
         LabApi.Events.Handlers.PlayerEvents.Joined += PlayerTrustCheck;
 
         if (Config.TestMode)
             Logger.Warn(Localization.GetLocalizedEntry(Localization.LangEntry.TestModeEnabledMessage));
     }
 
+    public void OutdatedVersionCheck()
+    {
+        string formattedVersion = $"{Version.Major}.{Version.Minor}.{Version.Build}";
+
+        StringBuilder fullUrl = new StringBuilder();
+
+        fullUrl.Append(Config.BaseApiUrl);
+        fullUrl.Append("trust/pluginver");
+
+        Timing.RunCoroutine(GetRequest(fullUrl.ToString()));
+
+        IEnumerator<float> GetRequest(string url)
+        {
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+            {
+                webRequest.timeout = 10;
+
+                yield return Timing.WaitUntilDone(webRequest.SendWebRequest());
+
+                if (webRequest.result == UnityWebRequest.Result.Success)
+                {
+                    string receivedVer = webRequest.downloadHandler.text;
+
+                    if (formattedVersion != receivedVer)
+                    {
+                        Logger.Warn(Localization.GetLocalizedEntry(Localization.LangEntry.OutdatedVersionWarning)
+                            .Replace("%CURRVER%", formattedVersion)
+                            .Replace("%NEWVER%", receivedVer));
+                    }
+                }
+
+                // Ignore no response. Version is not important.
+            }
+        }
+    }
+
     public void PlayerTrustCheck(PlayerJoinedEventArgs ev)
     {
         if (ev.Player.ReferenceHub.authManager.BypassBansFlagSet || ev.Player.RemoteAdminAccess)
             return;
-            
+
         StringBuilder fullUrl = new StringBuilder();
 
         fullUrl.Append(Config.BaseApiUrl);

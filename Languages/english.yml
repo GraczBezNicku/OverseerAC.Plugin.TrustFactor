@@ -20,3 +20,11 @@ TestModeEnabledMessage: |
   A message will be displayed in the console. All players with staff chat permissions will receive a message as well.
   !!! ============================ !!!
 TestModeUntrustedWarning: 'Player %AUTHID% (%NICK%) has been marked as untrusted.'
+OutdatedVersionWarning: |
+
+  !!! OverseerAC.Plugin.TrustFactor IS OUTDATED !!!
+  There is a version mismatch between the plugin you have installed versus the newest one available.
+  Installed version: %CURRVER%
+  Newest version: %NEWVER%
+  It is highly recommended to update in order to avoid issues!
+  !!! ========================================= !!!

@@ -104,6 +104,7 @@ public static class Localization
         UntrustedKickMessage,
         RequestFailed,
         TestModeEnabledMessage,
-        TestModeUntrustedWarning
+        TestModeUntrustedWarning,
+        OutdatedVersionWarning,
     }
 }

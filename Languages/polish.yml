@@ -20,3 +20,11 @@ TestModeEnabledMessage: |
   Wiadomość zostanie wysłana w konsoli. Wszyscy gracze z permisjami do staff chatu również otrzymają wiadomość.
   !!! ================================ !!!
 TestModeUntrustedWarning: 'Gracz %AUTHID% (%NICK%) został oznaczony jako niezaufany.'
+OutdatedVersionWarning: |
+
+  !!! OverseerAC.Plugin.TrustFactor JEST NIEZAKTUALIZOWANY !!!
+  Na twoim serwerze jest zainstalowana stara wersja pluginu, gdy dostępna jest nowsza.
+  Zainstalowana wersja: %CURRVER%
+  Najnowsza wersja: %NEWVER%
+  Aktualizacja jest rekomendowana, aby uniknąć problemów z działaniem pluginu.
+  !!! ========================================= !!!
